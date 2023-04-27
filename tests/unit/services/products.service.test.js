@@ -29,5 +29,11 @@ describe('Testa o service de produtos', () => {
         message: { message: 'Product not found' },
       });
     });
+
+    it('Chamando register com Data', async () => {
+      sinon.stub(productsModel, 'register').resolves({ id: 1, name: 'Produto' });
+      const result = await productsService.register('Produto');
+      expect(result).to.be.deep.equal({ id: 1, name: 'Produto' });
+    });
   });
 });

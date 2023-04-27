@@ -10,32 +10,47 @@ describe('Testa o model de produtos', () => {
 
     afterEach(() => sinon.restore());
 
-    it('Chamando getAll com DATA', async () => {
+    it('getAll com DATA', async () => {
       sinon.stub(connection, 'execute').resolves([getAllMockWithData]);
       
       const result = await productsModel.getAll();
       expect(result).to.be.deep.equal(getAllMockWithData);
     });
 
-    it('Chamando getAll sem DATA', async () => {
+    it('getAll sem DATA', async () => {
       sinon.stub(connection, 'execute').resolves([[]]);
       
       const result = await productsModel.getAll();
       expect(result).to.be.an('array').to.be.empty;
     });
 
-    it('Chamando getById com DATA', async () => {
+    it('getById com DATA', async () => {
       sinon.stub(connection, 'execute').resolves([getAllMockWithData]);
       
       const result = await productsModel.getById(1);
       expect(result).to.be.deep.equal(getAllMockWithData[0]);
     });
 
-    it('Chamando getById sem DATA', async () => {
+    it('getById sem DATA', async () => {
       sinon.stub(connection, 'execute').resolves([[]]);
       
       const result = await productsModel.getById(1);
       expect(result).to.be.an('undefined');
+    });
+
+    it('register com DATA', async () => {
+      sinon.stub(connection, 'execute').resolves([{
+        fieldCount: 0,
+        affectedRows: 1,
+        insertId: 1,
+        info: '',
+        serverStatus: 2,
+        warningStatus: 0
+      }]);
+      
+      const result = await productsModel.register('Produto');
+      expect(result).to.be.an('object').to.have.all.keys('id', 'name');
+      expect(result).to.be.deep.equal({ id: 1, name: 'Produto' });  
     });
   });
 
@@ -43,7 +58,7 @@ describe('Testa o model de produtos', () => {
       
     afterEach(() => sinon.restore());
   
-    it('Chamando getAll com erro', async () => {
+    it('getAll com erro', async () => {
       sinon.stub(connection, 'execute').throws(new Error('Erro de conexão'));
       
       try {
@@ -54,7 +69,7 @@ describe('Testa o model de produtos', () => {
       }
     });
   
-    it('Chamando getById com erro', async () => {
+    it('getById com erro', async () => {
       sinon.stub(connection, 'execute').throws(new Error('Erro de conexão'));
         
       try {

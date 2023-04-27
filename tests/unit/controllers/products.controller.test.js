@@ -51,5 +51,17 @@ describe('Testa o controller de produtos', () => {
       expect(res.status).to.been.calledWith(404);
       expect(res.json).to.been.calledWith({ message: 'Product not found' })
     });
+
+    it('Chamando register com Data', async () => {
+      sinon.stub(productsService, 'register').resolves({ id: 1, name: 'Produto' });
+      const req = { body: { name: 'Produto' } };
+      const res = {
+        status: sinon.stub().returnsThis(),
+        json: sinon.stub(),
+      };
+      await productsController.register(req, res);
+      expect(res.status).to.been.calledWith(201);
+      expect(res.json).to.been.calledWith({ id: 1, name: 'Produto' })
+    });
   });
 });
