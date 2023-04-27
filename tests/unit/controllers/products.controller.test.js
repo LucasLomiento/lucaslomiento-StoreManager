@@ -14,7 +14,7 @@ describe('Testa o controller de produtos', () => {
   afterEach(() => sinon.restore());
 
   describe('Testa se sucesso', () => {
-    it('Chamndo getAll com Data', async () => {
+    it('Chamando getAll com Data', async () => {
       sinon.stub(productsService, 'getAll').resolves(getAllMockWithData);
       const req = {};
       const res = {

@@ -15,7 +15,16 @@ const getById = async (id) => {
   return product;
 };
 
+const register = async (name) => {
+  const [product] = await connection.execute(
+    'INSERT INTO products (name) VALUES (?)',
+    [name],
+  );
+  return product;
+};
+
 module.exports = {
   getAll,
   getById,
+  register,
 };
