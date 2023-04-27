@@ -39,10 +39,12 @@ services:
       - 9229:9229
     # Configura as variáveis de ambiente dentro do container
     environment:
+      PORT: '3001'
       MYSQL_USER: root
       MYSQL_PASSWORD: password
       MYSQL_HOST: db # Nome do service logo abaixo
-      PORT: '3001'
+      MYSQL_PORT: '3306'
+      MYSQL_DATABASE: StoreManager
       HOST: store_manager
     networks:
       # Conecta esse serviço com a rede que criada

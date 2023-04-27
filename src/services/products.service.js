@@ -2,7 +2,7 @@ const productsModel = require('../models/products.model');
 
 const getAll = async () => {
   const products = await productsModel.getAll();
-  return products || [];
+  return products;
 };
 
 const getById = async (id) => {
