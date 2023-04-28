@@ -8,7 +8,7 @@ const { expect } = chai;
 
 const productsController = require('../../../src/controllers/products.controller');
 const productsService = require('../../../src/services/products.service');
-const { getAllMockWithData } = require('./mock/products.mock');
+const { getAllMockWithData } = require('../mock/products.mock');
 
 describe('Testa o controller de produtos', () => {
   afterEach(() => sinon.restore());

@@ -3,13 +3,13 @@ const sinon = require('sinon');
 
 const productsService = require('../../../src/services/products.service');
 const productsModel = require('../../../src/models/products.model');
-const { getAllMockWithData } = require('./mock/products.mock');
+const { getAllMockWithData } = require('../mock/products.mock');
 
 describe('Testa o service de produtos', () => {
   afterEach(() => sinon.restore());
 
   describe('Testa se sucesso', () => {
-    it('Chamndo getAll com Data', async () => {
+    it('Chamando getAll com Data', async () => {
       sinon.stub(productsModel, 'getAll').resolves(getAllMockWithData);
       const result = await productsService.getAll();
       expect(result).to.be.deep.equal(getAllMockWithData);

@@ -7,10 +7,11 @@ const registerSale = async () => {
 };
 
 const registerProduct = async (saleId, product, quantity) => {
-  await connection.execute(
+  const result = await connection.execute(
     'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)',
     [saleId, product, quantity],
   );
+  return result;
 };
 
 module.exports = {
