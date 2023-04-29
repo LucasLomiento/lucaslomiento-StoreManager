@@ -33,9 +33,23 @@ const update = async (id, name) => {
   return { id, name };
 };
 
+const exclude = async (id) => {
+  const allProducts = await getAll();
+  const product = allProducts.some((e) => e.id === parseInt(id, 10));
+  if (!product) {
+    return {
+      type: 404, message: { message: 'Product not found' },
+    };
+  }
+
+  await productsModel.exclude(id);
+  return { message: 'Product deleted successfully' };
+};
+
 module.exports = {
   getAll,
   getById,
   register,
   update,
+  exclude,
 };
