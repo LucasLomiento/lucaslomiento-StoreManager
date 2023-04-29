@@ -18,8 +18,17 @@ const register = async (req, res) => {
   return res.status(201).json({ id: product.id, name: product.name });
 };
 
+const update = async (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body;
+  const product = await productsService.update(id, name);
+  if (product.type) return res.status(product.type).json(product.message);
+  return res.status(200).json(product);
+};
+
 module.exports = {
   getAll,
   getById,
   register,
+  update,
 };

@@ -20,8 +20,22 @@ const register = async (name) => {
   return product;
 };
 
+const update = async (id, name) => {
+  const allProducts = await getAll();
+  const product = allProducts.some((e) => e.id === parseInt(id, 10));
+  if (!product) {
+    return {
+      type: 404, message: { message: 'Product not found' },
+    };
+  }
+  
+  await productsModel.update(id, name);
+  return { id, name };
+};
+
 module.exports = {
   getAll,
   getById,
   register,
+  update,
 };

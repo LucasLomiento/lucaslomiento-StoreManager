@@ -4,13 +4,18 @@
     "colId": "history",
     "containerId": "",
     "name": "http://localhost:3001/products",
-    "url": "http://localhost:3001/sales/1",
+    "url": "http://localhost:3001/products/",
     "method": "GET",
     "sortNum": 0,
     "created": "2023-04-26T19:04:00.075Z",
-    "modified": "2023-04-28T23:05:33.357Z",
+    "modified": "2023-04-29T19:24:08.683Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\r\n  \"name\": \"Martelo do Batmsan\"\r\n}",
+      "form": []
+    },
     "tests": []
   }
 ]
