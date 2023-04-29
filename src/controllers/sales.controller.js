@@ -22,8 +22,16 @@ const register = async (req, res) => {
   return res.status(statusCode).json(message);
 };
 
+const exclude = async (req, res) => {
+  const { id } = req.params;
+  const sales = await salesService.exclude(id);
+  if (sales.type) return res.status(sales.type).json(sales.message);
+  return res.status(204).json(sales.message);
+};
+
 module.exports = {
   getAll,
   getById,
   register,
+  exclude,
 };

@@ -11,7 +11,6 @@ const getAll = async () => {
   return sales;
 };
 
-// get all sales that have the same sale.id as the id passed as a parameter pode ter mais de um produto
 const getById = async (id) => {
   const [sale] = await connection.execute(`
     SELECT
@@ -38,9 +37,19 @@ const registerProduct = async (saleId, product, quantity) => {
   return result;
 };
 
+// delete from sales and sales_products where sale_id = 1
+const exclude = async (id) => {
+  const sale = await connection.execute(
+    'DELETE FROM StoreManager.sales WHERE id = ?',
+    [id],
+  );
+  return sale;
+};
+
 module.exports = {
   getAll,
   getById,
   registerSale,
   registerProduct,
+  exclude,
 };

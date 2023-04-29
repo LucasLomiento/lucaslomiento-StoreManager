@@ -43,8 +43,22 @@ const register = async (sales) => {
   return returnJson(sales, insertId);
 };
 
+const exclude = async (id) => {
+  const allSales = await getAll();
+  const sale = allSales.some((e) => e.saleId === parseInt(id, 10));
+  if (!sale) {
+    return {
+      type: 404, message: { message: 'Sale not found' },
+    };
+  }
+
+  await salesModel.exclude(id);
+  return {};
+};
+
 module.exports = {
   getAll,
   getById,
   register,
+  exclude,
 };
